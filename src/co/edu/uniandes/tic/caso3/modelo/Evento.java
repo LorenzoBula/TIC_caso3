@@ -15,6 +15,10 @@ public class Evento {
         this.fin = fin;
     }
 
+    public static Evento crearEventoFin(String id) {
+        return new Evento(id, -1, -1, -1, true);
+    }
+
     public String getId() {
         return id;
     }
@@ -25,18 +29,18 @@ public class Evento {
 
     public int getIdSensor() {
         return idSensor;
-    }   
+    }
 
     public void setIdSensor(int idSensor) {
         this.idSensor = idSensor;
-    }   
+    }
 
     public int getSecuencial() {
         return secuencial;
-    }   
+    }
 
     public void setSecuencial(int secuencial) {
-        this.secuencial = secuencial;   
+        this.secuencial = secuencial;
     }
 
     public int getTipo() {
@@ -53,5 +57,16 @@ public class Evento {
 
     public void setFin(boolean fin) {
         this.fin = fin;
+    }
+
+    @Override
+    public String toString() {
+        return "Evento{" +
+                "id='" + id + '\'' +
+                ", idSensor=" + idSensor +
+                ", secuencial=" + secuencial +
+                ", tipo=" + tipo +
+                ", fin=" + fin +
+                '}';
     }
 }

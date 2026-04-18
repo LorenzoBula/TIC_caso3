@@ -1,8 +1,9 @@
 package co.edu.uniandes.tic.caso3.monitores;
 
-import co.edu.uniandes.tic.caso3.modelo.Evento;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import co.edu.uniandes.tic.caso3.modelo.Evento;
 
 public class Buzon {
     private int capacidad;
@@ -19,12 +20,12 @@ public class Buzon {
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            }
         }
-    }
-    eventos.add(evento);
-    notifyAll();
-    }
 
+        eventos.add(evento);
+        notifyAll();
+    }
 
     public synchronized Evento retirar() {
         while (estaVacio()) {
@@ -34,17 +35,19 @@ public class Buzon {
                 e.printStackTrace();
             }
         }
+
         Evento evento = eventos.poll();
         notifyAll();
         return evento;
     }
 
-
     public synchronized Evento retirarSinEspera() {
         Evento evento = eventos.poll();
+
         if (evento != null) {
             notifyAll();
         }
+
         return evento;
     }
 
@@ -56,7 +59,6 @@ public class Buzon {
         if (capacidad <= 0) {
             return false;
         }
-        return eventos.size() == capacidad;
+        return eventos.size() >= capacidad;
     }
-
 }
